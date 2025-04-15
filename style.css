@@ -3,6 +3,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image: url("images/colosseum.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 #gameOverScreen {
@@ -20,6 +24,18 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
+}
+
+.playerText {
+    background-color: white;
+    opacity: .5;
+    z-index: 1;
+    height: 100px;
+    width: 100px;
+}
+
+.playerTextContent {
+    z-index: 2;
 }
 
 .healthSection {
