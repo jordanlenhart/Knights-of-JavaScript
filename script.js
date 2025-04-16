@@ -22,13 +22,13 @@ function changePlayer() {
 
         // checks if the player has reached 0 health
         if (playerTwoHealthNum <= 0) {
-            // ensures health does not dig into the negative
+            // ensures health does not dig into the negative MUST EDIT THIS LINE OF CODE
             playerTwoHealth = 0;
-            // ends the game
+            // ends the game AND THIS LINE
             gameOver();
         }
         else {
-            // switch to the next player and change the UI's display / behavior
+            // switch to the next player and change the UI's display / behavior THIS LINE TOO
             gameState.whoseTurn = 2;
 
             // grabs the 'playerName' element and changes the player's turn display
