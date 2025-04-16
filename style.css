@@ -7,6 +7,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    height: 100vh;
 }
 
 #gameOverScreen {
@@ -24,18 +25,22 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
+    
 }
 
-.playerText {
-    background-color: white;
-    opacity: .5;
-    z-index: 1;
-    height: 100px;
-    width: 100px;
+.textWhiteBackground {
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 1em;
+    padding: 1em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.playerTextContent {
-    z-index: 2;
+h2 {
+    margin:auto;
+    line-height: 1.5em;
 }
 
 .healthSection {
