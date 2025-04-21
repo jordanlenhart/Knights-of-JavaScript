@@ -4,9 +4,9 @@ body {
     justify-content: center;
     align-items: center;
     background-image: url("images/colosseum.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: 150em;
     background-position: center center;
+    background-repeat: no-repeat;
 }
 
 #gameOverScreen {
@@ -27,11 +27,14 @@ body {
 }
 
 .playerText {
-    background-color: white;
-    opacity: .5;
-    z-index: 1;
-    height: 100px;
-    width: 100px;
+    background-color: rgba(255, 255, 255, .5);
+    padding: 1em;
+    border-radius: 1em;
+}
+
+h2 {
+    margin: 0em;
+    text-align: center;
 }
 
 .playerTextContent {

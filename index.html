@@ -7,22 +7,24 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="playerText">
     <h2 id="title">Fight!</h2>
     <div id="gameOverScreen">
         <h2>GAME OVER!</h2>
         <h3 id="winningPlayer"></h3>
     </div>
+    
     <div id="playerTurn">
         <h2><span id="playerName">Player 1</span>'s turn!</h2>
     </div>
+    </div>
     <div id="fightingSpace">
         <div class="player" id='playerOne'>
-            <div class="playerText"></div>
-            <div class="playerTextContent">
+            <div class="playerText">
                 <h2>Player 1</h2>
                 <div class="healthSection">
                     <span>Health: </span><span id="playerOneHealth">100</span>
-                </div>
+            </div>
             </div>
             <div class="playerSpace">
                 <img id="playerOneSprite" class="idle" src="./images/R_Idle.png" alt="">
@@ -33,10 +35,11 @@
             </div>
         </div>
         <div class="player" id='playerTwo'>
-            <div class="playerText"></div>
+            <div class="playerText">
             <h2>Player 2</h2>
             <div class="healthSection">
                 <span>Health: </span><span id="playerTwoHealth"> 100</span>
+            </div>
             
             </div>
             <div class="playerSpace">

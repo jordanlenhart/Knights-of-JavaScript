@@ -35,7 +35,7 @@ function changePlayer() {
             let playerName = document.getElementById("playerName");
             playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
-    }
+    } 
 }
 
 // if a player's health reaches 0 at the end of a turn, the game ends
@@ -137,11 +137,85 @@ function attackPlayerOne() {
         playerOneHealthNum -= 10;
         playerOneHealth.innerHTML = playerOneHealthNum;
 
-        if (playerOneHealth <= 0) {
-            playerOneHealth = 0;
-            gameOver();
-        } else {
+        /* compartamentalized function  that will change player 2 attack button to active and player 1 attack to inactive using DOM manipultion of classList properties. Using .disable, the buttons not interactable while inactive. */
+        function changeButtonStatus() {
+            let playerTwoAttackButton = document.getElementById("playerTwoAttack");
+            playerTwoAttackButton.disabled = false;
+            playerTwoAttackButton.classList.add("active");
+            playerTwoAttackButton.classList.remove("inactive");
+    
+            let playerOneAttackButton = document.getElementById("playerOneAttack");
+            playerOneAttackButton.disabled = true;
+            playerOneAttackButton.classList.add("inactive");
+            playerOneAttackButton.classList.remove("active");
+        }
+
+        // commpartmentalized function that changes the player 1's sprite using the array
+        // containing multiple images
+        function animatePlayer() {
+        // an array containing the images using in player one's animation
+        // the indices are later used to cycle / "animate" when the player attacks
+        let playerTwoFrames = [
+            "./images/L_Idle.png",
+            "./images/L_Attack.png"
+        ];
+
+        let playerSprite = document.getElementById("playerTwoSprite");
+        // function we will call in setTimeout, before the frames change back
+        // the idle stance
+        // in other words, we set to the attack sprite, wait 3 seconds,
+        // then set it back to the idle sprite
+        playerSprite.src = playerTwoFrames[1];
+        
+        // removes the 'idle' class from the player sprite
+        playerSprite.classList.remove("idle");
+        // adds the 'attack' class to the player sprite
+        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+        playerSprite.classList.add("attack");
+
+        // grabs the enemy sprite
+        let enemySprite = document.getElementById("playerOneSprite");
+        let enemyDamage = document.getElementById("SFX_PlayerDamage");
+        // removes the 'idle' class from the enemy sprite
+        enemySprite.classList.remove("idle");
+        // adds the 'attack' class to the enemy sprite
+        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+        enemySprite.classList.add("damage");
+        // sound that plays when enemy takes damage
+        enemyDamage.play();
+
+        // the function we will call in the setTimeOut method below
+        // after 350 milliseconds
+        // this function will execute this block of code
+        function changePlayerTwoSprite() {
+            enemySprite.classList.remove("damage");
+            enemySprite.classList.add("idle");
+
+            playerSprite.src = playerTwoFrames[0];
+            playerSprite.classList.remove("attack");
+            playerSprite.classList.add("idle");
+        }
+
+        setTimeout(changePlayerTwoSprite, 350);
+    }
+
+        if (gameState.whoseTurn === 2) {
+            animatePlayer();
+            changeButtonStatus();
             changePlayer();
+        }
+
+        if (playerOneHealthNum <= 0) {
+                playerOneHealth = 0;
+                gameOver();
+        } else {
+            // switch to the next player and change the UI's display / behavior
+            gameState.whoseTurn = 1;
+
+            // grabs the 'playerName' element and changes the player's turn display
+            let playerName = document.getElementById("playerName");
+            playerName.innerHTML = `Player ${gameState.whoseTurn}`;
         }
     }
 }
+
