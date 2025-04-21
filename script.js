@@ -130,10 +130,14 @@ function attackPlayerTwo() {
     }
 }
 
+/* Function that allows player 1 attack button to reduce the health of player 1 when clicked */
 function attackPlayerOne() {
+    // if statement that is executed when the current player is player 2.
     if (gameState.whoseTurn === 2) {
+        // set the variable for player 1 health from the html element, then ise .innerHTML to convert from string to a number, also stored in a variable.
         let playerOneHealth = document.getElementById("playerOneHealth");
         let playerOneHealthNum = Number(playerOneHealth.innerHTML);
+        // reduce health by 10 and reset to the new value after losing 10
         playerOneHealthNum -= 10;
         playerOneHealth.innerHTML = playerOneHealthNum;
 
@@ -150,61 +154,52 @@ function attackPlayerOne() {
             playerOneAttackButton.classList.remove("active");
         }
 
-        // commpartmentalized function that changes the player 1's sprite using the array
-        // containing multiple images
+        // commpartmentalized function that changes the player 2's sprite using the array of different .png images, giving the animation
         function animatePlayer() {
-        // an array containing the images using in player one's animation
-        // the indices are later used to cycle / "animate" when the player attacks
+        // an array containing the images using in player two's animation for attacking and idling
         let playerTwoFrames = [
             "./images/L_Idle.png",
             "./images/L_Attack.png"
         ];
 
         let playerSprite = document.getElementById("playerTwoSprite");
-        // function we will call in setTimeout, before the frames change back
-        // the idle stance
-        // in other words, we set to the attack sprite, wait 3 seconds,
-        // then set it back to the idle sprite
+        // Basically, the sprite attacks, waits, then goes back to the idle sprite.
         playerSprite.src = playerTwoFrames[1];
         
-        // removes the 'idle' class from the player sprite
+        // removes the 'idle' from the player 2 sprite
         playerSprite.classList.remove("idle");
-        // adds the 'attack' class to the player sprite
-        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+        // adds the 'attack' to the player 2 sprite
         playerSprite.classList.add("attack");
 
-        // grabs the enemy sprite
+        // grabs the enemy sprite with getelemenetbyID
         let enemySprite = document.getElementById("playerOneSprite");
         let enemyDamage = document.getElementById("SFX_PlayerDamage");
         // removes the 'idle' class from the enemy sprite
         enemySprite.classList.remove("idle");
-        // adds the 'attack' class to the enemy sprite
-        // ** CHECK THE CSS TO NOTE THE CHANGES MADE **
+        // adds the 'attack' class to the enemy sprite to animate the enemy to show taking damage
         enemySprite.classList.add("damage");
-        // sound that plays when enemy takes damage
+        // sound that plays when enemy takes damage (does not work if clicked too fast)
         enemyDamage.play();
 
-        // the function we will call in the setTimeOut method below
-        // after 350 milliseconds
-        // this function will execute this block of code
+        // the function we will call in the setTimeOut method below after a certain amount of time (350ms)
         function changePlayerTwoSprite() {
             enemySprite.classList.remove("damage");
             enemySprite.classList.add("idle");
-
+            // this is just adding and removing the damage and idle images to show animation.
             playerSprite.src = playerTwoFrames[0];
             playerSprite.classList.remove("attack");
             playerSprite.classList.add("idle");
         }
-
+        // timeout sets the certain amount of time before stopping.
         setTimeout(changePlayerTwoSprite, 350);
     }
-
+        // if it is player 2's turn, we will execute these functions when called/triggered via the buttons.
         if (gameState.whoseTurn === 2) {
             animatePlayer();
             changeButtonStatus();
             changePlayer();
         }
-
+        //if player one has 0 or less health, game over function will be executed and called instead. 
         if (playerOneHealthNum <= 0) {
                 playerOneHealth = 0;
                 gameOver();
