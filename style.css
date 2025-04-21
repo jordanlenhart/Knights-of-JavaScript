@@ -6,11 +6,8 @@ body {
     background-image: url("images/colosseum.jpg");
     background-size: 150em;
     background-position: center center;
-<<<<<<< HEAD
     background-repeat: no-repeat;
-=======
     height: 100vh;
->>>>>>> refs/remotes/origin/main
 }
 
 #gameOverScreen {
