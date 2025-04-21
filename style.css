@@ -73,6 +73,10 @@ h2 {
     background: linear-gradient(-90deg, rgba(0,255,0, 0.7), rgba(255,0,0,0) 90.71%); border-top-right-radius: 80%; border-bottom-right-radius: 80%";
 }
 
+.gameOverScreen {
+    text-align: center;
+}
+
 .damage {
     height: 350px;
     width: 350px;
